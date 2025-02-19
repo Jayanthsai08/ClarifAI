@@ -1,7 +1,7 @@
 "use client"
 import { Button } from "../components/ui/button";
 import { api } from "../convex/_generated/api";
-import { UserButton, useUser } from "@clerk/nextjs";
+import { useClerk, UserButton, useUser } from "@clerk/nextjs";
 import { useMutation } from "convex/react";
 import { useEffect, useRef } from "react";
 import LandingHeader from "./dashboard/_components/LandingHeader";
@@ -35,7 +35,12 @@ export default function Home() {
     checkAndCreateUser();
   }, [user, createUser]);
 
+ const { openSignIn } = useClerk(); // Clerk method to open the sign-in page
 
+  const handleLoginClick = () => {
+    toast("Please log in to Get Started!")
+    openSignIn(); // Open the Clerk sign-in page
+  };
 
   return (
     <div className="min-h-screen " style={{ backgroundImage: "url('/pattern.png')" }}>
@@ -66,7 +71,7 @@ export default function Home() {
             ) : (
               <Button
                 className="px-8 py-6 mb-36 text-lg size-xl bg-black text-white rounded-lg hover:scale-105 transition-transform"
-                onClick={() => toast("Please log in to get started!")}
+                onClick={handleLoginClick}
               >
                 Get Started
               </Button>
@@ -164,7 +169,7 @@ export default function Home() {
             <Button
               variant="secondary"
               className="mt-6 px-8 py-4 text-lg size-xl border-2 border-black bg-black hover:bg-white hover:text-black  text-white rounded-lg hover:scale-105 transition-transform"
-              onClick={() => toast("Please log in to start the free trial!")}
+              onClick={handleLoginClick}
             >
               Start Free Trial
             </Button>
