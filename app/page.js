@@ -10,6 +10,7 @@ import Link from "next/link";
 import LandingDetails from "./dashboard/_components/LandingDetails"
 import Footer from "./dashboard/_components/Footer"
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 export default function Home() {
   const { user } = useUser();
@@ -163,7 +164,7 @@ export default function Home() {
             <Button
               variant="secondary"
               className="mt-6 px-8 py-4 text-lg size-xl border-2 border-black bg-black hover:bg-white hover:text-black  text-white rounded-lg hover:scale-105 transition-transform"
-              onClick={() => alert("Please log in to start the free trial!")}
+              onClick={() => toast("Please log in to start the free trial!")}
             >
               Start Free Trial
             </Button>
