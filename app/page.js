@@ -66,7 +66,7 @@ export default function Home() {
             ) : (
               <Button
                 className="px-8 py-6 mb-36 text-lg size-xl bg-black text-white rounded-lg hover:scale-105 transition-transform"
-                onClick={() => alert("Please log in to get started!")}
+                onClick={() => toast("Please log in to get started!")}
               >
                 Get Started
               </Button>
