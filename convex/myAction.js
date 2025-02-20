@@ -6,10 +6,6 @@ import { v } from "convex/values";
 
 const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;  
 
-if (!API_KEY) {
-  throw new Error("GEMINI_API_KEY is missing. Check your .env.local file.");
-}
-
 export const ingest = action({
   args: {
     splitText: v.any(),
