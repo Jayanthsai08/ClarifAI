@@ -4,7 +4,7 @@ import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { TaskType } from "@google/generative-ai";
 import { v } from "convex/values";
 
-const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;  // Securely use API key from env
+const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;  
 
 if (!API_KEY) {
   throw new Error("GEMINI_API_KEY is missing. Check your .env.local file.");
@@ -21,7 +21,7 @@ export const ingest = action({
         args.splitText, // Array
         { fileId: args.fileId }, // String
         new GoogleGenerativeAIEmbeddings({
-          apiKey: API_KEY,  // Using environment variable
+          apiKey: API_KEY, 
           model: "text-embedding-004", // 768 dimensions
           taskType: TaskType.RETRIEVAL_DOCUMENT,
           title: "Document title",
@@ -52,10 +52,8 @@ export const search = action({
         }),
         { ctx }
       );
-
       const results = await vectorStore.similaritySearch(args.query, 5);
       const filteredResults = results.filter(q => q.metadata.fileId === args.fileId);
-
       console.log("Search results:", filteredResults);
       return JSON.stringify(filteredResults);
     } catch (error) {
