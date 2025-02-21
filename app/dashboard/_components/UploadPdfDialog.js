@@ -66,11 +66,11 @@ function UploadPdfDialog({ children, isMaxFile }) {
         //Api call to l to fectch PDF processed data
         const ApiResp = await axios.get('/api/pdf-loader?pdfUrl='+fileUrl)
         console.log(ApiResp.data.result);
-        await embeddDocument({
+        const embeddedResult = await embeddDocument({
             splitText:ApiResp.data.result,
             fileId:fileId
         });
-        //console.log(embeddedResult); 
+        console.log("Embeddings :",embeddedResult); 
         setLoading(false);
         setOpen(false);
 

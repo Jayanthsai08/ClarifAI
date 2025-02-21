@@ -32,48 +32,44 @@ function EditorExtension({ editor }) {
   const onAiClick = async () => {
     toast("AI is Cooking 🕑...");
     const selectedText = editor.state.doc.textBetween(editor.state.selection.from, editor.state.selection.to, ' ');
-    
-    console.log('Selected Text:', selectedText);
+  
 
-    const result = await SearchAI({ query: selectedText, fileId: fileId });
+    const result = await SearchAI({
+      query: selectedText,
+      fileId: fileId,
+    });
+    console.log("result :",result)
 
-    console.log("AI Response:", result);
-
-    // Ensure we only parse if it's a string
-    const UnformattedAns = typeof result === "string" ? JSON.parse(result) : result;
+    const UnformattedAns = JSON.parse(result);
     let AllUnformattedAns = '';
 
-    if (Array.isArray(UnformattedAns)) {
-        UnformattedAns.forEach((item) => {
-            AllUnformattedAns += item.pageContent;
-        });
-    }
+    UnformattedAns &&
+      UnformattedAns.forEach((item) => {
+        AllUnformattedAns = AllUnformattedAns + item.pageContent;
+      });
 
     console.log(AllUnformattedAns);
-    
     const PROMPT =
-        `For question: ${selectedText} and with the given content as answer, 
-        please complete the unformatted answer and fix any sentence fragments. 
-        Give an adequately detailed answer by consolidating all ideas in HTML format.
-        The answer content is: ${AllUnformattedAns}
-        Please note: Just give the requested response and no other explanation.`;
+      "For question :" +
+      selectedText +
+      " and with the given content as answer," +
+      "please complete the unformatted answer and fix any sentence fragments and give an appropriate adequately detailed answer by consolidating all the ideas in HTML format. The answer content is:" +
+      AllUnformattedAns +
+      " Please note: just give the requested response and no other explanation.";
 
     const AiModelResult = await chatSession.sendMessage(PROMPT);
-    const AiResponseText = await AiModelResult.response.text();
-
-    console.log(AiResponseText);
-
-    const FinalAns = AiResponseText.replace(/```/g, '').replace(/html/g, '');
+    
+    const FinalAns = AiModelResult.response.text().replace('```', '').replace('html', '').replace('```', '');
 
     const AllText = editor.getHTML();
-    editor.commands.setContent(AllText + `<p> <strong> Answer: </strong> ${FinalAns}</p>`);
+    editor.commands.setContent(AllText + '<p> <strong> Answer: </strong> ' + FinalAns + '</p>');
 
     saveNotes({
-        notes: editor.getHTML(),
-        fileId: fileId,
-        createdBy: user?.primaryEmailAddress?.emailAddress,
+      notes: editor.getHTML(),
+      fileId: fileId,
+      createdBy: user?.primaryEmailAddress?.emailAddress,
     });
-};
+  };
 
   const onSaveClick = async () => {
     toast("Saving notes...");

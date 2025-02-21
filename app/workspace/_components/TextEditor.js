@@ -31,7 +31,7 @@ function TextEditor({ fileId }) {
     // Get notes stored in DB
     const notes = useQuery(api.notes.GetNotes, { fileId });
 
-    console.log(notes);
+    
 
     const editor = useEditor({
         extensions: [

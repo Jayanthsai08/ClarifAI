@@ -13,7 +13,6 @@ function DashboardLayout({children}) {
             <div className='p-10'>
             {children}
             </div>
-            
         </div>
     </div>
   )

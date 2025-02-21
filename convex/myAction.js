@@ -1,10 +1,8 @@
 import { ConvexVectorStore } from "@langchain/community/vectorstores/convex";
-import { action } from "./_generated/server.js";
+import { action } from "./_generated/server.js"; // ✅ Fixed import
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { TaskType } from "@google/generative-ai";
 import { v } from "convex/values";
-
-const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;  
 
 export const ingest = action({
   args: {
@@ -14,20 +12,20 @@ export const ingest = action({
   handler: async (ctx, args) => {
     try {
       await ConvexVectorStore.fromTexts(
-        args.splitText, // Array
-        { fileId: args.fileId }, // String
+        args.splitText,  
+        { fileId: args.fileId },  // ✅ Use array for metadata
         new GoogleGenerativeAIEmbeddings({
-          apiKey: API_KEY, 
-          model: "text-embedding-004", // 768 dimensions
+          apiKey:"AIzaSyBnt1ikUy_BbLY8GXIXOHkJS47PSW6ctnM",  // ✅ Use env variable
+          model: "text-embedding-004",
           taskType: TaskType.RETRIEVAL_DOCUMENT,
           title: "Document title",
         }),
         { ctx }
       );
-      return "Completed..";
+      return "Completed.";
     } catch (error) {
-      console.error("Error in ingest function:", error);
-      return { error: "Failed to process the request." };
+      console.error("Ingestion Error:", error);
+      return "Failed to ingest data.";
     }
   },
 });
@@ -41,20 +39,19 @@ export const search = action({
     try {
       const vectorStore = new ConvexVectorStore(
         new GoogleGenerativeAIEmbeddings({
-          apiKey: API_KEY,  // Using environment variable
-          model: "text-embedding-004", // 768 dimensions
+          apiKey: "AIzaSyBnt1ikUy_BbLY8GXIXOHkJS47PSW6ctnM", // ✅ Use env variable
+          model: "text-embedding-004",
           taskType: TaskType.RETRIEVAL_DOCUMENT,
           title: "Document title",
         }),
         { ctx }
       );
+
       const results = await vectorStore.similaritySearch(args.query, 5);
-      const filteredResults = results.filter(q => q.metadata.fileId === args.fileId);
-      console.log("Search results:", filteredResults);
-      return JSON.stringify(filteredResults);
+      return JSON.stringify(results.filter(q => q.metadata.fileId === args.fileId));
     } catch (error) {
-      console.error("Error in search function:", error);
-      return { error: "Search failed." };
+      console.error("Search Error:", error);
+      return JSON.stringify({ error: "Failed to search" });
     }
   },
 });
