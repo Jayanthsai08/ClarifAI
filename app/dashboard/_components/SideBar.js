@@ -30,11 +30,8 @@ function SideBar() {
   return (
     <div className='shadow-lg h-screen p-5'>
       <div className='flex items-center'>
-        <Link href="/">
-          <div className="flex items-center">
-            <Image src={'/logo.png'} alt='logo' width={30} height={20} className="cursor-pointer" />
-            <span className='text-red-700 ml-2 font-medium text-2xl'>ClarifAI</span>
-          </div>
+        <Link href="/" className="flex items-center">
+          <Image src="/logo.png" alt="ClarifAI Logo" width={120} height={150} />
         </Link>
       </div>
 

@@ -10,11 +10,11 @@ function UpgradePlans() {
 
 
   return (
-    <div>
+    <div style={{ backgroundImage: "url('/pattern.png')" }}>
       <h2 className='font-medium text-3xl'>Plans</h2>
-      <p>Upgrade your plan to upload multiple files</p>
+      <p>Upgrade your plan to work on multiple files</p>
 
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 " style={{ backgroundImage: "url('/pattern.png')" }}>
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 " >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center md:gap-8 ">
           <div
             className="rounded-2xl  shadow-md sm:order-last sm:px-8 lg:p-12 hover:scale-105 border-2 border-gray-300 backdrop-blur-lg transition-all"

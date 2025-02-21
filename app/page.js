@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <div className="min-h-screen " style={{ backgroundImage: "url('/pattern.png')" }}>
       {/* Navigation */}
-      <nav className=" sticky top-0 z-50 flex items-center justify-between px-8 py-4 ">
+      <nav className=" sticky top-0 z-50 flex items-center justify-between px-8 py-4 rounded-xl">
         <LandingHeader />
       </nav>
       <div className="rounded-2xl mx-12 my-3 p-2  backdrop-blur-md " style={{ backgroundImage: "url('/gradient-hero.png')" }} >
@@ -64,7 +64,7 @@ export default function Home() {
           <div className="mt-8 space-x-4">
             {user ? (
               <Link href="/dashboard">
-                <Button className="px-8 py-6 mb-36 text-lg size-xl border-2 border-black bg-black hover:bg-white hover:text-black  text-white rounded-lg hover:scale-105 transition-transform">
+                <Button className="px-8 py-6 lg:mb-36 md:mb-20 sm:mb-10 text-lg size-xl border-2 border-black bg-black hover:bg-white hover:text-black  text-white rounded-lg hover:scale-105 transition-transform">
                   Get Started
                 </Button>
               </Link>
@@ -145,7 +145,7 @@ export default function Home() {
       </div>
     </div>
       {/* Features Section */}
-      <section ref={featuresRef} className="container px-40 mt-6 mx-auto mb-10">
+      <section ref={featuresRef} className="container lg:px-36 md:px-20 sm:px-20 xs:px-8 mt-6  mb-10">
         <LandingDetails />
       </section>
 

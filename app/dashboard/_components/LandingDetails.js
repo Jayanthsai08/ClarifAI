@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 function LandingDetails() {
     return (
         <div >
-            <div className="flex flex-row justify-between mr-30 p-8 ">
-                <div><h1 className="text-7xl  font-semibold leading-tight text-transparent bg-black bg-clip-text lg:mt-16 md:mt-10">
+            <div className="flex lg:flex-row sm:flex-col justify-between lg:mr-30 md:mr-15 sm:mr-5 lg:p-8 md:p-4 sm:p-2 ">
+                <div><h1 className="text-7xl font-semibold leading-tight text-transparent bg-black bg-clip-text lg:mt-16 md:mt-10">
                     Loaded with <br /> Smart <span className="text-7xl font-semibold text-red-700">Features</span>
                 </h1></div>
                 <div className="p-12">
