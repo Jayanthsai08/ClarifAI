@@ -52,9 +52,10 @@ export default function Home() {
         {/* Hero Section */}
         <section className="container px-4 mx-auto mt-12 text-center">
           <h1 className="text-7xl font-bold leading-tight text-transparent bg-white bg-clip-text font-hel">
-            Simplify <span className="text-7xl text-red-600">PDF</span> <span className="text-7xl text-blue-700">Note</span>-Taking
+          The AI-Powered PDF Companion<br/>
+          Smarter <span className="text-7xl text-red-600"> Notes</span>, Deeper <span className="text-7xl text-blue-700">Insights</span>
             <br />
-            with AI-Powered Insights
+             
           </h1>
           <p className="mt-6 text-2xl text-white lg:mx-80 md:mx-20 sm:mx-5">
             Elevate your note-taking experience with our AI-powered PDF app.

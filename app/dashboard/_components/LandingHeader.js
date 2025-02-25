@@ -66,7 +66,7 @@ function Header() {
           ) : (
             <button
               onClick={handleLoginClick}
-              className="w-full text-white bg-black rounded-2xl border-2 border-black py-2 px-3 hover:bg-white hover:text-black transition"
+              className="w-full text-white bg-black rounded-2xl border-2 border-black py-1 px-2 hover:bg-white hover:text-black transition"
             >
               Log In
             </button>
