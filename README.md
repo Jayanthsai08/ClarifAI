@@ -50,7 +50,7 @@ Welcome to **ClarifAI**, an AI-powered note-taking web app designed to streamlin
 
 ## Live Demo
 
-You can try out the live version of **ClarifAI** here: [ClarifAI Live Demo](https://lnkd.in/dxWShM5E).
+You can try out the live version of **ClarifAI** here: [ClarifAI Live Demo](https://clarif-ai.vercel.app/).
 
 ## Contributing
 
